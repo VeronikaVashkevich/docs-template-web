@@ -13,6 +13,7 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Номер документа</th>
+                <th scope="col">Название документа</th>
                 <th scope="col"></th>
             </tr>
             </thead>
@@ -21,7 +22,8 @@
                 <tr>
                     <th scope="row">{{ $doc->id }}</th>
                     <td>{{ $doc->number }}</td>
-{{--                    <td><a href="{{ route('createForm1') }}">Создать</a></td>--}}
+                    <td>{{ $doc->doc_name }}</td>
+                    <td><a href="{{ route($doc->route_name) }}">Создать</a></td>
                 </tr>
             @endforeach
             </tbody>
