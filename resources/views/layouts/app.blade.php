@@ -11,6 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <link rel="icon" type="image/x-icon" href="{{ asset('img/favico.png') }}">
@@ -24,9 +25,17 @@
             <ul class="nav nav-pills">
                 <li class="nav-item"><a href="/" class="nav-link active" aria-current="page">Главная</a></li>
 {{--                <li class="nav-item"><a href="{{ route('templates') }}" class="nav-link">Шаблоны</a></li>--}}
-                <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Документы
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="{{ route('templates', ['template' => 'form1']) }}">Форма 1</a></li>
+                    </ul>
+                </li>
+
+{{--                <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>--}}
+{{--                <li class="nav-item"><a href="#" class="nav-link">About</a></li>--}}
             </ul>
         </header>
     </div>

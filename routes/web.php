@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DocsController;
 use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [IndexController::class, 'index'])->name('index');
-Route::get('/templates', [IndexController::class, 'templates'])->name('templates');
+Route::get('/templates/{template}', [IndexController::class, 'templates'])->name('templates');
 
-Route::get('/create/form-1', [IndexController::class, 'createForm1'])->name('createForm1');
-Route::post('/save-form-1', [IndexController::class, 'addForm1'])->name('addForm1');
+Route::get('/create/form-1', [DocsController::class, 'createForm1'])->name('createForm1');
+Route::post('/save-form-1', [DocsController::class, 'addForm1'])->name('addForm1');

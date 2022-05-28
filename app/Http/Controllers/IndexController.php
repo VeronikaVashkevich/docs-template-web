@@ -18,31 +18,12 @@ class IndexController extends Controller
         return view('index');
     }
 
-    public function templates()
+    public function templates($template)
     {
-        return view('templates');
+        $class = DocsService::getTemplateClass($template);
+        $docs = $class::all();
+
+        return view('templates', compact('docs'));
     }
 
-    public function createForm1()
-    {
-        return view('templates.form1');
-    }
-
-    /**
-     * @param StoreForm1Request $request
-     * @throws \PhpOffice\PhpWord\Exception\CopyFileException
-     * @throws \PhpOffice\PhpWord\Exception\CreateTemporaryFileException
-     */
-    public function addForm1(StoreForm1Request $request)
-    {
-        $validated = $request->validated();
-        $docService = new DocsService();
-
-        if (!$docService->saveForm1Doc($validated)) {
-            return redirect('/create/form-1');
-        }
-        $docService->setForm1Values($validated);
-
-        return response()->download('form1-template.docx')->deleteFileAfterSend(true);
-    }
 }

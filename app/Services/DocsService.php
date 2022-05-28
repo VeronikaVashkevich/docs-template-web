@@ -11,6 +11,14 @@ use PhpOffice\PhpWord\TemplateProcessor;
 class DocsService
 {
     const TEL_REGEX = '/^[0-9]{7}$/';
+    const TEMPLATES = [
+        'form1' => Form1Template::class,
+    ];
+
+    public static function getTemplateClass($templateName)
+    {
+        return self::TEMPLATES[$templateName];
+    }
 
     /**
      * @param $validated
