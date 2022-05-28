@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-    <<div class="container pb-5">
+    <div class="container pb-5">
         <table class="table">
             <thead class="table-dark">
             <tr>

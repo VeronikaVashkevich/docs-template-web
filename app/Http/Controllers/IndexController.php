@@ -17,6 +17,16 @@ class IndexController extends Controller
         return view('index');
     }
 
+    public function templates()
+    {
+        return view('templates');
+    }
+
+    public function createForm1()
+    {
+        return view('templates.form1');
+    }
+
     /**
      * @param StoreForm1Request $request
      * @throws \PhpOffice\PhpWord\Exception\CopyFileException

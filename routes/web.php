@@ -15,4 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [IndexController::class, 'index'])->name('index');
+Route::get('/templates', [IndexController::class, 'templates'])->name('templates');
+
+Route::get('/create/form-1', [IndexController::class, 'createForm1'])->name('createForm1');
 Route::post('/save-form-1', [IndexController::class, 'addDocument'])->name('addForm1');
