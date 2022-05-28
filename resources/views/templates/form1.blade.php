@@ -1,6 +1,6 @@
 @extends('layouts/app')
 
-@section('title', 'Меню')
+@section('title', 'Создать документ')
 
 @section('header')
     @parent
