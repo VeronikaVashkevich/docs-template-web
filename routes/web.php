@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DocsController;
 use App\Http\Controllers\IndexController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,8 +17,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Auth::routes();
 Route::get('/', [IndexController::class, 'index'])->name('index');
-Route::get('/templates/{template}', [IndexController::class, 'templates'])->name('templates');
 
-Route::get('/create/form-1', [DocsController::class, 'createForm1'])->name('createForm1');
-Route::post('/save-form-1', [DocsController::class, 'addForm1'])->name('addForm1');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/templates/{template}', [IndexController::class, 'templates'])->name('templates');
+    Route::get('/create/form-1', [DocsController::class, 'createForm1'])->name('createForm1');
+    Route::post('/save-form-1', [DocsController::class, 'addForm1'])->name('addForm1');
+    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+});

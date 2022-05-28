@@ -25,18 +25,22 @@
         <header class="d-flex justify-content-center py-3">
             <ul class="nav nav-pills">
                 <li class="nav-item"><a href="/" class="nav-link active" aria-current="page">Главная</a></li>
-{{--                <li class="nav-item"><a href="{{ route('templates') }}" class="nav-link">Шаблоны</a></li>--}}
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
                         Документы
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="{{ route('templates', ['template' => 'form1']) }}">Форма 1</a></li>
+                        <li><a class="dropdown-item" href="{{ route('templates', ['template' => 'form1']) }}">Форма
+                                1</a></li>
                     </ul>
                 </li>
-
-{{--                <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>--}}
-{{--                <li class="nav-item"><a href="#" class="nav-link">About</a></li>--}}
+                @auth
+                    <li class="nav-item"><a href="{{ route('logout') }}" class="nav-link" aria-current="page">Выйти</a></li>
+                @else
+                    <li class="nav-item"><a href="{{ route('login') }}" class="nav-link" aria-current="page">Войти</a></li>
+                    <li class="nav-item"><a href="{{ route('register') }}" class="nav-link" aria-current="page">Регистрация</a></li>
+                @endauth
             </ul>
         </header>
     </div>
