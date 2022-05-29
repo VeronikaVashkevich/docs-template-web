@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DocsController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -25,5 +26,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/create/form-1', [DocsController::class, 'createForm1'])->name('createForm1');
     Route::post('/save-form-1', [DocsController::class, 'addForm1'])->name('addForm1');
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
 });

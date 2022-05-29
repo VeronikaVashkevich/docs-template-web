@@ -30,38 +30,38 @@
             </div>
             {{-- Поставщик --}}
             <div class="mb-3">
-                <label for="provider_org_full_name" class="form-label">Полное название организации</label>
+                <label for="provider_org_full_name" class="form-label">Полное название организации поставщика</label>
                 <input type="text" class="form-control" id="provider_org_full_name" name="provider_org_full_name" value="{{@old('provider_org_full_name')}}">
             </div>
             <div class="mb-3">
-                <label for="provider_org_employee_fio" class="form-label">ФИО</label>
+                <label for="provider_org_employee_fio" class="form-label">ФИО поставщика</label>
                 <input type="text" class="form-control" id="provider_org_employee_fio" name="provider_org_employee_fio" value="{{@old('provider_org_employee_fio')}}">
             </div>
             <div class="mb-3">
-                <label for="provider_org_employee_position" class="form-label">Должность</label>
+                <label for="provider_org_employee_position" class="form-label">Должность поставщика</label>
                 <input type="text" class="form-control" id="provider_org_employee_position"
                        name="provider_org_employee_position" value="{{@old('provider_org_employee_position')}}">
             </div>
             <div class="mb-3">
-                <label for="provider_doc_name" class="form-label">Наименование документа</label>
+                <label for="provider_doc_name" class="form-label">Наименование документа поставщика</label>
                 <input type="text" class="form-control" id="provider_doc_name" name="provider_doc_name" value="{{@old('provider_doc_name')}}">
             </div>
             {{-- Покупатель --}}
             <div class="mb-3">
-                <label for="customer_org_full_name" class="form-label">Полное название организации</label>
+                <label for="customer_org_full_name" class="form-label">Полное название организации покупателя</label>
                 <input type="text" class="form-control" id="customer_org_full_name" name="customer_org_full_name" value="{{@old('customer_org_full_name')}}">
             </div>
             <div class="mb-3">
-                <label for="customer_org_employee_fio" class="form-label">ФИО</label>
+                <label for="customer_org_employee_fio" class="form-label">ФИО покупателя</label>
                 <input type="text" class="form-control" id="customer_org_employee_fio" name="customer_org_employee_fio" value="{{@old('customer_org_employee_fio')}}">
             </div>
             <div class="mb-3">
-                <label for="customer_org_employee_position" class="form-label">Должность</label>
+                <label for="customer_org_employee_position" class="form-label">Должность покупателя</label>
                 <input type="text" class="form-control" id="customer_org_employee_position"
                        name="customer_org_employee_position" value="{{@old('customer_org_employee_position')}}">
             </div>
             <div class="mb-3">
-                <label for="customer_doc_name" class="form-label">Наименование документа</label>
+                <label for="customer_doc_name" class="form-label">Наименование документа покупателя</label>
                 <input type="text" class="form-control" id="customer_doc_name" name="customer_doc_name" value="{{@old('customer_doc_name')}}">
             </div>
             {{-- Товар --}}
