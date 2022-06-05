@@ -22,6 +22,11 @@
                 <td>Форма 1</td>
                 <td><a href="{{ route('createForm1') }}">Создать</a></td>
             </tr>
+            <tr>
+                <th scope="row">1</th>
+                <td>Брачный договор</td>
+                <td><a href="{{ route('createMarriageContract') }}">Создать</a></td>
+            </tr>
             </tbody>
         </table>
 

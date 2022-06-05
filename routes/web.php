@@ -25,6 +25,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/templates/{template}', [IndexController::class, 'templates'])->name('templates');
     Route::get('/create/form-1', [DocsController::class, 'createForm1'])->name('createForm1');
     Route::post('/save-form-1', [DocsController::class, 'addForm1'])->name('addForm1');
+    Route::get('/create/marriage-contract', [DocsController::class, 'createMarriageContract'])->name('createMarriageContract');
+    Route::post('/save-marriage-contract', [DocsController::class, 'addMarriageContract'])->name('addMarriageContract');
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 });

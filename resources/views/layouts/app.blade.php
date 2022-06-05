@@ -33,13 +33,19 @@
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <li><a class="dropdown-item" href="{{ route('templates', ['template' => 'form1']) }}">Форма
                                 1</a></li>
+                        <li><a class="dropdown-item"
+                               href="{{ route('createMarriageContract', ['template' => 'marriageContract']) }}">Брачный
+                                договор</a></li>
                     </ul>
                 </li>
                 @auth
-                    <li class="nav-item"><a href="{{ route('logout') }}" class="nav-link" aria-current="page">Выйти</a></li>
+                    <li class="nav-item"><a href="{{ route('logout') }}" class="nav-link" aria-current="page">Выйти</a>
+                    </li>
                 @else
-                    <li class="nav-item"><a href="{{ route('login') }}" class="nav-link" aria-current="page">Войти</a></li>
-                    <li class="nav-item"><a href="{{ route('register') }}" class="nav-link" aria-current="page">Регистрация</a></li>
+                    <li class="nav-item"><a href="{{ route('login') }}" class="nav-link" aria-current="page">Войти</a>
+                    </li>
+                    <li class="nav-item"><a href="{{ route('register') }}" class="nav-link" aria-current="page">Регистрация</a>
+                    </li>
                 @endauth
             </ul>
         </header>

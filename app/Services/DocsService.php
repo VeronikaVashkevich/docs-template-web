@@ -5,12 +5,14 @@ namespace App\Services;
 
 
 use App\Models\Form1Template;
+use App\Models\MarriageContract;
 use PhpOffice\PhpWord\PhpWord;
 use PhpOffice\PhpWord\TemplateProcessor;
 
 class DocsService
 {
     const TEL_REGEX = '/^[0-9]{7}$/';
+    const PASSPORT_NUMBER_REGEX = '/^[0-9]{7}$/';
     const TEMPLATES = [
         'form1' => Form1Template::class,
     ];
@@ -103,5 +105,74 @@ class DocsService
         $form1->save();
 
         return true;
+    }
+
+    public function saveMarriageContract($validated)
+    {
+        $marriageContract = new MarriageContract;
+
+        $marriageContract->date = $validated['date'];
+        $marriageContract->husband = $validated['husband'];
+        $marriageContract->wife = $validated['wife'];
+        $marriageContract->husband_name = $validated['husband_name'];
+        $marriageContract->husband_flat = $validated['husband_flat'];
+        $marriageContract->husband_flat_address = $validated['husband_flat_address'];
+        $marriageContract->husband_car_model = $validated['husband_car_model'];
+        $marriageContract->husband_car_engine_number = $validated['husband_car_engine_number'];
+        $marriageContract->husband_car_engine_body = $validated['husband_car_engine_body'];
+        $marriageContract->husband_car_register = $validated['husband_car_register'];
+        $marriageContract->husband_garage = $validated['husband_garage'];
+        $marriageContract->wife_name = $validated['wife_name'];
+        $marriageContract->wife_property_1 = $validated['wife_property_1'];
+        $marriageContract->wife_property_2 = $validated['wife_property_2'];
+        $marriageContract->wife_property_3 = $validated['wife_property_3'];
+        $marriageContract->wife_property_4 = $validated['wife_property_4'];
+        $marriageContract->sum = $validated['sum'];
+        $marriageContract->husband_passport_series = $validated['husband_passport_series'];
+        $marriageContract->husband_passport_number = $validated['husband_passport_number'];
+        $marriageContract->husband_issued = $validated['husband_issued'];
+        $marriageContract->husband_issued_address = $validated['husband_issued_address'];
+        $marriageContract->wife_passport_series = $validated['wife_passport_series'];
+        $marriageContract->wife_passport_number = $validated['wife_passport_number'];
+        $marriageContract->wife_issued = $validated['wife_issued'];
+        $marriageContract->wife_issued_address = $validated['wife_issued_address'];
+
+        $marriageContract->save();
+
+        return true;
+    }
+
+    public function setMarriageContractValues($validated)
+    {
+        $templateProcessor = new TemplateProcessor('word-templates/marriage-contract.docx');
+
+        $templateProcessor->setValue('date', $validated['date']);
+        $templateProcessor->setValue('year', date('Y', strtotime($validated['date'])));
+        $templateProcessor->setValue('husband', $validated['husband']);
+        $templateProcessor->setValue('wife', $validated['wife']);
+        $templateProcessor->setValue('husband_name', $validated['husband_name']);
+        $templateProcessor->setValue('husband_flat', $validated['husband_flat']);
+        $templateProcessor->setValue('husband_flat_address', $validated['husband_flat_address']);
+        $templateProcessor->setValue('husband_car_model', $validated['husband_car_model']);
+        $templateProcessor->setValue('husband_car_engine_number', $validated['husband_car_engine_number']);
+        $templateProcessor->setValue('husband_car_engine_body', $validated['husband_car_engine_body']);
+        $templateProcessor->setValue('husband_car_register', $validated['husband_car_register']);
+        $templateProcessor->setValue('husband_garage', $validated['husband_garage']);
+        $templateProcessor->setValue('wife_name', $validated['wife_name']);
+        $templateProcessor->setValue('wife_property_1', $validated['wife_property_1']);
+        $templateProcessor->setValue('wife_property_2', $validated['wife_property_2']);
+        $templateProcessor->setValue('wife_property_3', $validated['wife_property_3']);
+        $templateProcessor->setValue('wife_property_4', $validated['wife_property_4']);
+        $templateProcessor->setValue('sum', $validated['sum']);
+        $templateProcessor->setValue('husband_passport_series', $validated['husband_passport_series']);
+        $templateProcessor->setValue('husband_passport_number', $validated['husband_passport_number']);
+        $templateProcessor->setValue('husband_issued', $validated['husband_issued']);
+        $templateProcessor->setValue('husband_issued_address', $validated['husband_issued_address']);
+        $templateProcessor->setValue('wife_passport_series', $validated['wife_passport_series']);
+        $templateProcessor->setValue('wife_passport_number', $validated['wife_passport_number']);
+        $templateProcessor->setValue('wife_issued', $validated['wife_issued']);
+        $templateProcessor->setValue('wife_issued_address', $validated['wife_issued_address']);
+
+        $templateProcessor->saveAs('marriage-contract.docx');
     }
 }

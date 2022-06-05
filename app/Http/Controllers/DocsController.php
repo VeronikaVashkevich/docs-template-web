@@ -4,6 +4,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Http\Requests\MarriageContractRequest;
 use App\Http\Requests\StoreForm1Request;
 use App\Services\DocsService;
 
@@ -16,6 +17,7 @@ class DocsController extends Controller
 
     /**
      * @param StoreForm1Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      * @throws \PhpOffice\PhpWord\Exception\CopyFileException
      * @throws \PhpOffice\PhpWord\Exception\CreateTemporaryFileException
      */
@@ -30,5 +32,23 @@ class DocsController extends Controller
         $docService->setForm1Values($validated);
 
         return response()->download('form1-template.docx')->deleteFileAfterSend(true);
+    }
+
+    public function createMarriageContract()
+    {
+        return view('templates.marriage-contract');
+    }
+
+    public function addMarriageContract(MarriageContractRequest $request)
+    {
+        $validated = $request->validated();
+        $docService = new DocsService();
+
+        if (!$docService->saveMarriageContract($validated)) {
+            return redirect('/create/form-1');
+        }
+        $docService->setMarriageContractValues($validated);
+
+        return response()->download('marriage-contract.docx')->deleteFileAfterSend(true);
     }
 }
