@@ -34,8 +34,11 @@
                         <li><a class="dropdown-item" href="{{ route('templates', ['template' => 'form1']) }}">Форма
                                 1</a></li>
                         <li><a class="dropdown-item"
-                               href="{{ route('createMarriageContract', ['template' => 'marriageContract']) }}">Брачный
+                               href="{{ route('templates', ['template' => 'marriageContract']) }}">Брачный
                                 договор</a></li>
+                        <li><a class="dropdown-item"
+                               href="{{ route('templates', ['template' => 'authorContractDesigner']) }}">Авторский
+                                договор с заказчиком</a></li>
                     </ul>
                 </li>
                 @auth

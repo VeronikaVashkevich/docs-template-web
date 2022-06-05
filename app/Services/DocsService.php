@@ -4,6 +4,7 @@
 namespace App\Services;
 
 
+use App\Models\AuthorContractDesigner;
 use App\Models\Form1Template;
 use App\Models\MarriageContract;
 use PhpOffice\PhpWord\PhpWord;
@@ -15,6 +16,8 @@ class DocsService
     const PASSPORT_NUMBER_REGEX = '/^[0-9]{7}$/';
     const TEMPLATES = [
         'form1' => Form1Template::class,
+        'marriageContract' => MarriageContract::class,
+        'authorContractDesigner' => AuthorContractDesigner::class,
     ];
 
     public static function getTemplateClass($templateName)
@@ -174,5 +177,58 @@ class DocsService
         $templateProcessor->setValue('wife_issued_address', $validated['wife_issued_address']);
 
         $templateProcessor->saveAs('marriage-contract.docx');
+    }
+
+    public function saveAuthorContractDesigner($validated)
+    {
+        $authorContractDesigner = new AuthorContractDesigner;
+
+        $authorContractDesigner->number = $validated['number'];
+        $authorContractDesigner->date = $validated['date'];
+        $authorContractDesigner->customer = $validated['customer'];
+        $authorContractDesigner->customer_repr = $validated['customer_repr'];
+        $authorContractDesigner->designer = $validated['designer'];
+        $authorContractDesigner->images = $validated['images'];
+        $authorContractDesigner->territory = $validated['territory'];
+        $authorContractDesigner->time = $validated['time'];
+        $authorContractDesigner->reward = $validated['reward'];
+        $authorContractDesigner->contract_days = $validated['contract_days'];
+        $authorContractDesigner->customer_address = $validated['customer_address'];
+        $authorContractDesigner->customer_pay = $validated['customer_pay'];
+        $authorContractDesigner->customer_tel = $validated['customer_tel'];
+        $authorContractDesigner->designer_address = $validated['designer_address'];
+        $authorContractDesigner->designer_passport = $validated['designer_passport'];
+        $authorContractDesigner->designer_phone = $validated['designer_phone'];
+        $authorContractDesigner->tax_data = $validated['tax_data'];
+
+        $authorContractDesigner->save();
+
+        return true;
+    }
+
+    public function setAuthorContractDesignerValues($validated)
+    {
+        $templateProcessor = new TemplateProcessor('word-templates/author-contract-designer.docx');
+
+        $templateProcessor->setValue('number', $validated['number']);
+        $templateProcessor->setValue('date', $validated['date']);
+        $templateProcessor->setValue('year', date('Y', strtotime($validated['date'])));
+        $templateProcessor->setValue('customer', $validated['customer']);
+        $templateProcessor->setValue('customer_repr', $validated['customer_repr']);
+        $templateProcessor->setValue('designer', $validated['designer']);
+        $templateProcessor->setValue('images', $validated['images']);
+        $templateProcessor->setValue('territory', $validated['territory']);
+        $templateProcessor->setValue('time', $validated['time']);
+        $templateProcessor->setValue('reward', $validated['reward']);
+        $templateProcessor->setValue('contract_days', $validated['contract_days']);
+        $templateProcessor->setValue('customer_address', $validated['customer_address']);
+        $templateProcessor->setValue('customer_pay', $validated['customer_pay']);
+        $templateProcessor->setValue('customer_tel', $validated['customer_tel']);
+        $templateProcessor->setValue('designer_address', $validated['designer_address']);
+        $templateProcessor->setValue('designer_passport', $validated['designer_passport']);
+        $templateProcessor->setValue('designer_phone', $validated['designer_phone']);
+        $templateProcessor->setValue('tax_data', $validated['tax_data']);
+
+        $templateProcessor->saveAs('author-contract-designer.docx');
     }
 }
