@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AuthorContractDesignerRequest;
 use App\Http\Requests\MarriageContractRequest;
+use App\Http\Requests\OrderDistributionResponsibilitiesRequest;
 use App\Http\Requests\StoreForm1Request;
 use App\Services\DocsService;
 
@@ -70,5 +71,24 @@ class DocsController extends Controller
 
         return response()->download('author-contract-designer.docx')->deleteFileAfterSend(true);
 
+    }
+
+    public function createOrderDistributionResponsibilities()
+    {
+        return view('templates.order-distribution-responsibilities');
+    }
+
+    public function addOrderDistributionResponsibilities(OrderDistributionResponsibilitiesRequest $request)
+    {
+        $validated = $request->validated();
+
+        $docsService = new DocsService();
+
+        if (!$docsService->saveOrderDistributionResponsibilities($validated)) {
+            return redirect('/create/order-distribution-responsibilities');
+        }
+        $docsService->setOrderDistributionResponsibilities($validated);
+
+        return response()->download('order-distribution-responsibilities.docx')->deleteFileAfterSend(true);
     }
 }

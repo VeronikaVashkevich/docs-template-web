@@ -39,6 +39,8 @@
                         <li><a class="dropdown-item"
                                href="{{ route('templates', ['template' => 'authorContractDesigner']) }}">Авторский
                                 договор с заказчиком</a></li>
+                        <li><a class="dropdown-item"
+                               href="{{ route('templates', ['template' => 'orderDistributionResponsibilities']) }}">Приказ о распределении обязанностей между руководством</a></li>
                     </ul>
                 </li>
                 @auth

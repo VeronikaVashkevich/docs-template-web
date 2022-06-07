@@ -7,7 +7,7 @@ namespace App\Services;
 use App\Models\AuthorContractDesigner;
 use App\Models\Form1Template;
 use App\Models\MarriageContract;
-use PhpOffice\PhpWord\PhpWord;
+use App\Models\OrderDistributionResponsibilities;
 use PhpOffice\PhpWord\TemplateProcessor;
 
 class DocsService
@@ -18,6 +18,7 @@ class DocsService
         'form1' => Form1Template::class,
         'marriageContract' => MarriageContract::class,
         'authorContractDesigner' => AuthorContractDesigner::class,
+        'orderDistributionResponsibilities' => OrderDistributionResponsibilities::class,
     ];
 
     public static function getTemplateClass($templateName)
@@ -230,5 +231,37 @@ class DocsService
         $templateProcessor->setValue('tax_data', $validated['tax_data']);
 
         $templateProcessor->saveAs('author-contract-designer.docx');
+    }
+
+    public function saveOrderDistributionResponsibilities($validated)
+    {
+        $order = new OrderDistributionResponsibilities;
+
+        $order->OKUD = $validated['OKUD'];
+        $order->order_number = $validated['order_number'];
+        $order->order_date = $validated['order_date'];
+        $order->reason = $validated['reason'];
+        $order->responsibility1 = $validated['responsibility1'];
+        $order->responsibility2 = !empty($validated['responsibility2']) ? $validated['responsibility2'] : '';
+        $order->responsibility3 = !empty($validated['responsibility3']) ? $validated['responsibility3'] : '';
+
+        $order->save();
+
+        return true;
+    }
+
+    public function setOrderDistributionResponsibilities($validated)
+    {
+        $templateProcessor = new TemplateProcessor('word-templates/order-distribution-responsibilities.docx');
+
+        $templateProcessor->setValue('OKUD', $validated['OKUD']);
+        $templateProcessor->setValue('order_number', $validated['order_number']);
+        $templateProcessor->setValue('order_date', $validated['order_date']);
+        $templateProcessor->setValue('reason', $validated['reason']);
+        $templateProcessor->setValue('responsibility1', $validated['responsibility1']);
+        $templateProcessor->setValue('responsibility2', $validated['responsibility2']);
+        $templateProcessor->setValue('responsibility3', $validated['responsibility3']);
+
+        $templateProcessor->saveAs('order-distribution-responsibilities.docx');
     }
 }

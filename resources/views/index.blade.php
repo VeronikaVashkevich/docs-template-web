@@ -32,6 +32,11 @@
                 <td>Авторский договор с заказчиком</td>
                 <td><a href="{{ route('createAuthorContractDesigner') }}">Создать</a></td>
             </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>Приказ о распределении обязанностей между руководством</td>
+                <td><a href="{{ route('createOrderDistributionResponsibilities') }}">Создать</a></td>
+            </tr>
             </tbody>
         </table>
 

@@ -29,6 +29,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/save-marriage-contract', [DocsController::class, 'addMarriageContract'])->name('addMarriageContract');
     Route::get('/create/author-contract-designer', [DocsController::class, 'createAuthorContractDesigner'])->name('createAuthorContractDesigner');
     Route::post('/save-author-contract-designer', [DocsController::class, 'addAuthorContractDesigner'])->name('addAuthorContractDesigner');
+    Route::get('/create/order-distribution-responsibilities', [DocsController::class, 'createOrderDistributionResponsibilities'])->name('createOrderDistributionResponsibilities');
+    Route::post('/save-order-distribution-responsibilities', [DocsController::class, 'addOrderDistributionResponsibilities'])->name('addOrderDistributionResponsibilities');
 
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
     Route::get('/home', [HomeController::class, 'index'])->name('home');

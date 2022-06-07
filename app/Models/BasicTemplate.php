@@ -14,5 +14,6 @@ class BasicTemplate extends Model
     protected $fillable = [
         'class',
         'doc_name',
+        'route_name',
     ];
 }
